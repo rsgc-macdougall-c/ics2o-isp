@@ -17,9 +17,17 @@ class GameViewController: UIViewController {
         let scene = GameScene(size: CGSize(width: 1536, height: 2048))
         
         let skView = self.view as! SKView
-        skview.showsFPS = true
-        skview.showsNodeCounter = true
+        skView.showsFPS = true
+        skView.showsNodeCount = true
         
-        
+        skView.ignoresSiblingOrder = true
+        scene.scaleMode = .aspectFill
+        skView.presentScene(scene)
+
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true // status bar is now hidden
+    }
     
 }

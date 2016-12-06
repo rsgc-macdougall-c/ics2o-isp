@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Vertigo in Picture" translatesAutoresizingMaskIntoConstraints="NO" id="eEM-vJ-dub">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SplashScreen-Bamboo" translatesAutoresizingMaskIntoConstraints="NO" id="FqB-Oi-Rz6">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -35,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Vertigo in Picture" width="768" height="1024"/>
+        <image name="SplashScreen-Bamboo" width="768" height="1024"/>
     </resources>
 </document>
