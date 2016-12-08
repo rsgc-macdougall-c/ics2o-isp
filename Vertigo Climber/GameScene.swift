@@ -61,13 +61,28 @@ class GameScene: SKScene {
         //Print the location to the console
         print(touchLocation.x)
         print(touchLocation.y)
+      
+        let leftDestination = CGPoint(x: 450, y: ninja.position.y)
         
-        let destination = CGPoint(x: 450, y: ninja.position.y)
+        let rightDestination = CGPoint(x: self.size.width-450, y: ninja.position.y)
         
-        let actionMove = SKAction.move(to: destination, duration: 0.33)
+        // decide which side of the screen the tap occured on
+        if touchLocation.x >= size.width/2 {
+            // right side
+            let actionMove = SKAction.move(to: rightDestination, duration: 0.33)
+            
+            //tell ninja to move
+            ninja.run(actionMove)
+        } else {
+            let actionMove = SKAction.move(to: leftDestination, duration: 0.33)
+            
+            //tell ninja to move
+            ninja.run(actionMove)
+        }
         
-        //tell ninja to move
-        ninja.run(actionMove)
+        
+        
+        
 
         
     }
