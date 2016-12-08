@@ -48,8 +48,21 @@ class GameScene: SKScene {
         
     }
     
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        handleTouch(touches, with: event)
+        
+    }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        handleTouch(touches, with: event)
+        
+    }
+    
+    
+    func handleTouch(_ touches: Set<UITouch>, with event: UIEvent?) {
         //manage finger size on screen
         guard let touch = touches.first else {
             return
@@ -57,36 +70,33 @@ class GameScene: SKScene {
         
         //get the location of the touch
         let touchLocation = touch.location(in: self)
-       
+        
         //Print the location to the console
         print(touchLocation.x)
         print(touchLocation.y)
-      
+        
         let leftDestination = CGPoint(x: 450, y: ninja.position.y)
         
         let rightDestination = CGPoint(x: self.size.width-450, y: ninja.position.y)
         
         // decide which side of the screen the tap occured on
-        if touchLocation.x >= size.width/2 {
+        if ninja.position.x == leftDestination.x {
             // right side
             let actionMove = SKAction.move(to: rightDestination, duration: 0.33)
             
             //tell ninja to move
             ninja.run(actionMove)
+            
         } else {
+            
             let actionMove = SKAction.move(to: leftDestination, duration: 0.33)
             
             //tell ninja to move
             ninja.run(actionMove)
+            
         }
         
-        
-        
-        
-
-        
     }
-    
+
     
 }
-    
