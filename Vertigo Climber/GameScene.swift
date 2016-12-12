@@ -49,7 +49,17 @@ class GameScene: SKScene {
         bambooShootTwo.setScale(2)
         addChild(bambooShootTwo)
         
-        spawnObstacle()
+        
+        //periodically spawn obstacles
+        let actionWait = SKAction.wait(forDuration: 2)
+        
+        let actionSpawn = SKAction.run() { [weak self] in self?.spawnObstacle()}
+        
+        let actionSequence = SKAction.sequence([actionWait, actionSpawn])
+        
+        let actionObstacleRepeat = SKAction.repeatForever(actionSequence)
+        
+        run(actionObstacleRepeat)
         
     }
     
@@ -122,7 +132,11 @@ class GameScene: SKScene {
         
         let actionMove = SKAction.move(to: endingPosition, duration: 4)
         
-        obstacle.run(actionMove)
+        let actionRemove = SKAction.removeFromParent()
+        
+        let actionSequence = SKAction.sequence([actionMove, actionRemove])
+        
+        obstacle.run(actionSequence)
         
     }
     
