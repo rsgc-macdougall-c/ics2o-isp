@@ -62,6 +62,12 @@ class GameScene: SKScene {
         run(actionObstacleRepeat)
         
     }
+    //function that runs everytime SpriteKit updates the game frame
+    override func update(_ currentTime: TimeInterval) {
+        
+        //checks for Collisions
+        checkCollisions()
+    }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -126,6 +132,8 @@ class GameScene: SKScene {
         
         obstacle.position = startingPosition
         
+        obstacle.name = "hadouken"
+        
         addChild(obstacle)
         
         let endingPosition = CGPoint(x: horizontalPosition + 150, y: 0 - obstacle.size.height)
@@ -139,8 +147,32 @@ class GameScene: SKScene {
         obstacle.run(actionSequence)
         
     }
-    
-    
+    //checks for Collisions
+    func checkCollisions() {
+        
+        //empty arry that will contain all the collisions
+        var hitObstacles : [SKSpriteNode] = []
+        
+        enumerateChildNodes(withName: "hadouken", using: {
+            node, _ in
+        
+            let obstacle = node as! SKSpriteNode
+            
+            
+            if obstacle.frame.insetBy(dx: 20, dy: 20).intersects(self.ninja.frame) {
+                
+                hitObstacles.append(obstacle)
+            }
+        
+        })
+        
+        func ninjaHit(by obstacle: SKSpriteNode) {
+        
+            obstacle.removeFromParent()
+        
+        }
+        
+    }
     
     
 
