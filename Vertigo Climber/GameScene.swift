@@ -23,6 +23,10 @@ class GameScene: SKScene {
     let scoreLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
     var score = 0
     
+    //label and variable that tracks the height
+    let altitudeLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
+    var altitude = 0
+    
     //this function runs immediately upon start-up
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black //adds the background sprite
@@ -74,6 +78,14 @@ class GameScene: SKScene {
         scoreLabel.zPosition = 150 // makes sure the HUD is above all other nodes on the screen
         scoreLabel.position = CGPoint(x: size.width - size.width/4, y: size.height - size.height/8)
         addChild(scoreLabel)
+        
+        //dictates the settings for the Altitude Label
+        altitudeLabel.text = String(altitude)
+        altitudeLabel.fontColor = SKColor.black
+        altitudeLabel.fontSize = 96
+        altitudeLabel.zPosition = 150 // makes sure the HUD is above all other nodes on the screen
+        altitudeLabel.position = CGPoint(x: size.width - size.width/2, y: size.height - size.height/8)
+        addChild(altitudeLabel)
         
         
     }
