@@ -13,8 +13,10 @@ class GameScene: SKScene {
     
     // adding a "Hero" sprite
     let ninja = SKSpriteNode(imageNamed: "ninja")
-    let bambooShoot = SKSpriteNode(imageNamed: "bamboo shoot")
-    let bambooShootTwo = SKSpriteNode(imageNamed: "bamboo shoot two")
+    
+    let bambooShoot = SKSpriteNode(imageNamed: "bambooshoot-flipped")
+    
+    let bambooShootTwo = SKSpriteNode(imageNamed: "bambooshoot-two")
     
     
     override func didMove(to view: SKView) {
@@ -38,13 +40,16 @@ class GameScene: SKScene {
         
         addChild(ninja) //adds the ninja sprite to the scene
         
-        bambooShoot.position = CGPoint(x: 263, y: size.height/2)
+        bambooShoot.position = CGPoint(x: 163, y: size.height/2)
+        bambooShoot.setScale(2)
         
         addChild(bambooShoot)
         
-        bambooShootTwo.position = CGPoint(x: 1273, y: size.height/2)
-        
+        bambooShootTwo.position = CGPoint(x: 1373, y: size.height/2)
+        bambooShootTwo.setScale(2)
         addChild(bambooShootTwo)
+        
+        spawnObstacle()
         
     }
     
@@ -54,13 +59,11 @@ class GameScene: SKScene {
         
     }
     
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         handleTouch(touches, with: event)
         
     }
-    
     
     func handleTouch(_ touches: Set<UITouch>, with event: UIEvent?) {
         //manage finger size on screen
@@ -75,9 +78,9 @@ class GameScene: SKScene {
         print(touchLocation.x)
         print(touchLocation.y)
         
-        let leftDestination = CGPoint(x: 450, y: ninja.position.y)
+        let leftDestination = CGPoint(x: 333, y: ninja.position.y)
         
-        let rightDestination = CGPoint(x: self.size.width-450, y: ninja.position.y)
+        let rightDestination = CGPoint(x: self.size.width-333, y: ninja.position.y)
         
         // decide which side of the screen the tap occured on
         if ninja.position.x == leftDestination.x {
@@ -89,7 +92,7 @@ class GameScene: SKScene {
             
         } else {
             
-            let actionMove = SKAction.move(to: leftDestination, duration: 0.33)
+            let actionMove = SKAction.move(to: leftDestination, duration: 0.25)
             
             //tell ninja to move
             ninja.run(actionMove)
@@ -97,6 +100,35 @@ class GameScene: SKScene {
         }
         
     }
+    
+    func spawnObstacle() {
+        
+        let obstacle = SKSpriteNode(imageNamed: "shuriken")
+        
+        obstacle.setScale(0.25)
+        
+        let horizontalPosition = CGFloat(arc4random_uniform(UInt32(1236)))
+        
+        let verticalPosition = size.height + obstacle.size.height
+        
+        
+        let startingPosition = CGPoint(x: horizontalPosition + 150, y: verticalPosition)
+        
+        obstacle.position = startingPosition
+        
+        addChild(obstacle)
+        
+        let endingPosition = CGPoint(x: horizontalPosition + 150, y: 0 - obstacle.size.height)
+        
+        let actionMove = SKAction.move(to: endingPosition, duration: 4)
+        
+        obstacle.run(actionMove)
+        
+    }
+    
+    
+    
+    
 
     
 }
