@@ -14,11 +14,16 @@ class GameScene: SKScene {
     // adding a "Hero" sprite
     let ninja = SKSpriteNode(imageNamed: "ninja")
     
+    //side "wall" sprites for character to bounce off of
     let bambooShoot = SKSpriteNode(imageNamed: "bambooshoot-flipped")
     
     let bambooShootTwo = SKSpriteNode(imageNamed: "bambooshoot-two")
     
+    //label and variable that tracks the score
+    let scoreLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
+    var score = 0
     
+    //this function runs immediately upon start-up
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black //adds the background sprite
         
@@ -40,6 +45,7 @@ class GameScene: SKScene {
         
         addChild(ninja) //adds the ninja sprite to the scene
         
+        // information for the two walls of bamboo
         bambooShoot.position = CGPoint(x: 163, y: size.height/2)
         bambooShoot.setScale(2)
         
@@ -61,7 +67,17 @@ class GameScene: SKScene {
         
         run(actionObstacleRepeat)
         
+        //settings for the HUD score label
+        scoreLabel.text = String(score)
+        scoreLabel.fontColor = SKColor.black
+        scoreLabel.fontSize = 96
+        scoreLabel.zPosition = 150 // makes sure the HUD is above all other nodes on the screen
+        scoreLabel.position = CGPoint(x: size.width - size.width/4, y: size.height - size.height/8)
+        addChild(scoreLabel)
+        
+        
     }
+    
     //function that runs everytime SpriteKit updates the game frame
     override func update(_ currentTime: TimeInterval) {
         
@@ -117,6 +133,7 @@ class GameScene: SKScene {
         
     }
     
+    // this function controls the "obstacles" and how they spawn
     func spawnObstacle() {
         
         let obstacle = SKSpriteNode(imageNamed: "shuriken")
@@ -147,6 +164,7 @@ class GameScene: SKScene {
         obstacle.run(actionSequence)
         
     }
+    
     //checks for Collisions
     func checkCollisions() {
         
@@ -158,22 +176,34 @@ class GameScene: SKScene {
         
             let obstacle = node as! SKSpriteNode
             
-            
-            if obstacle.frame.insetBy(dx: 20, dy: 20).intersects(self.ninja.frame) {
+            //detects for a collision between ninja and obstacle but also checks to see if ninja is still in fact present in the scene 
+            if obstacle.frame.insetBy(dx: 20, dy: 20).intersects(self.ninja.frame) && self.ninja.parent != nil {
                 
                 hitObstacles.append(obstacle)
             }
         
         })
         
-        func ninjaHit(by obstacle: SKSpriteNode) {
-        
-            obstacle.removeFromParent()
-        
+        // iterate over the list of all the hadoukens that are intersecting with the hero and remove them
+        for obstacle in hitObstacles {
+            
+            ninjaHit(by: obstacle)
         }
+
         
     }
     
+    // This function removes the ninja from the scene
+    func ninjaHit(by obstacle: SKSpriteNode) {
+        
+        score -= 1
+        
+        scoreLabel.text = String(score)
+        
+        ninja.removeFromParent()
+        
+        
+    }
     
 
     

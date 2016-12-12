@@ -13,6 +13,7 @@
 		B34389F81DE7364C00643AB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34389F61DE7364C00643AB0 /* Main.storyboard */; };
 		B34389FA1DE7364D00643AB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B34389F91DE7364D00643AB0 /* Assets.xcassets */; };
 		B34389FD1DE7364D00643AB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34389FB1DE7364D00643AB0 /* LaunchScreen.storyboard */; };
+		B377CAC41DFF436D001111B9 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B377CAC31DFF436D001111B9 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B34389F91DE7364D00643AB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B34389FC1DE7364D00643AB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B34389FE1DE7364D00643AB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B377CAC31DFF436D001111B9 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				B34389EC1DE7364C00643AB0 /* AppDelegate.swift */,
+				B377CAC31DFF436D001111B9 /* GameOverScene.swift */,
 				B34389F21DE7364C00643AB0 /* GameScene.swift */,
 				B34389F41DE7364C00643AB0 /* GameViewController.swift */,
 				B34389F61DE7364C00643AB0 /* Main.storyboard */,
@@ -99,6 +102,7 @@
 				TargetAttributes = {
 					B34389E81DE7364A00643AB0 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 39VCMLKY7J;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -141,6 +145,7 @@
 			files = (
 				B34389F31DE7364C00643AB0 /* GameScene.swift in Sources */,
 				B34389F51DE7364C00643AB0 /* GameViewController.swift in Sources */,
+				B377CAC41DFF436D001111B9 /* GameOverScene.swift in Sources */,
 				B34389ED1DE7364C00643AB0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,7 +267,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 39VCMLKY7J;
 				INFOPLIST_FILE = "Vertigo Climber/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.on.rsgc.cmacdougall.Vertigo-Climber";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -274,7 +281,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 39VCMLKY7J;
 				INFOPLIST_FILE = "Vertigo Climber/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.on.rsgc.cmacdougall.Vertigo-Climber";
 				PRODUCT_NAME = "$(TARGET_NAME)";
