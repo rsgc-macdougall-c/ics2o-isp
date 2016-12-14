@@ -21,7 +21,7 @@ class GameScene: SKScene {
     
     //label and variable that tracks the score
     let scoreLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
-    var score = 0
+    var score = 1
     
     //label and variable that tracks the height
     let altitudeLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
@@ -86,6 +86,23 @@ class GameScene: SKScene {
         altitudeLabel.zPosition = 150 // makes sure the HUD is above all other nodes on the screen
         altitudeLabel.position = CGPoint(x: size.width - size.width/2, y: size.height - size.height/8)
         addChild(altitudeLabel)
+        
+        //check for game over
+        if score == 0 {
+        
+        //create a game over scene the same size as the full screen
+        let gameOverScene = GameOverScene(size: size)
+        
+        //configure a transition bjetc to specify the type of animation that handles the move between scenes
+        let reveal = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
+        
+        //access the current view and present the new scene
+        view?.presentScene(gameOverScene, transition: reveal)
+        
+        
+        }
+        
+        
         
         
     }
@@ -152,12 +169,12 @@ class GameScene: SKScene {
         
         obstacle.setScale(0.25)
         
-        let horizontalPosition = CGFloat(arc4random_uniform(UInt32(1236)))
+        let horizontalPosition = CGFloat(arc4random_uniform(UInt32(910)))
         
         let verticalPosition = size.height + obstacle.size.height
         
         
-        let startingPosition = CGPoint(x: horizontalPosition + 150, y: verticalPosition)
+        let startingPosition = CGPoint(x: horizontalPosition + 300, y: verticalPosition)
         
         obstacle.position = startingPosition
         
@@ -165,7 +182,7 @@ class GameScene: SKScene {
         
         addChild(obstacle)
         
-        let endingPosition = CGPoint(x: horizontalPosition + 150, y: 0 - obstacle.size.height)
+        let endingPosition = CGPoint(x: horizontalPosition + 300, y: 0 - obstacle.size.height)
         
         let actionMove = SKAction.move(to: endingPosition, duration: 4)
         
@@ -217,6 +234,25 @@ class GameScene: SKScene {
         
     }
     
-
+    func altitudeLabelChange() {
+        
+        altitude += 1
+    }
+    //check for game over
+   // if score = 0 {
+    
+    //create a game over scene the same size as the full screen
+    //let gameOverScene = GameOverScene(size: size)
+    
+    //configure a transition bjetc to specify the type of animation that handles the move between scenes
+    //let reveal = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
+    
+    //access the current view and present the new scene
+    //view?.presentScene(gameOverScene, transition: reveal)
+    
+    
+    //}
+    
+    
     
 }
