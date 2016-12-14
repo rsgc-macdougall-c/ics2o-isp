@@ -87,20 +87,7 @@ class GameScene: SKScene {
         altitudeLabel.position = CGPoint(x: size.width - size.width/2, y: size.height - size.height/8)
         addChild(altitudeLabel)
         
-        //check for game over
-        if score == 0 {
-        
-        //create a game over scene the same size as the full screen
-        let gameOverScene = GameOverScene(size: size)
-        
-        //configure a transition bjetc to specify the type of animation that handles the move between scenes
-        let reveal = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
-        
-        //access the current view and present the new scene
-        view?.presentScene(gameOverScene, transition: reveal)
-        
-        
-        }
+
         
         
         
@@ -202,15 +189,15 @@ class GameScene: SKScene {
         
         enumerateChildNodes(withName: "hadouken", using: {
             node, _ in
-        
+            
             let obstacle = node as! SKSpriteNode
             
-            //detects for a collision between ninja and obstacle but also checks to see if ninja is still in fact present in the scene 
+            //detects for a collision between ninja and obstacle but also checks to see if ninja is still in fact present in the scene
             if obstacle.frame.insetBy(dx: 20, dy: 20).intersects(self.ninja.frame) && self.ninja.parent != nil {
                 
                 hitObstacles.append(obstacle)
             }
-        
+            
         })
         
         // iterate over the list of all the hadoukens that are intersecting with the hero and remove them
@@ -218,7 +205,7 @@ class GameScene: SKScene {
             
             ninjaHit(by: obstacle)
         }
-
+        
         
     }
     
@@ -231,6 +218,20 @@ class GameScene: SKScene {
         
         ninja.removeFromParent()
         
+        //check for game over
+        if score == 0 {
+            
+            //create a game over scene the same size as the full screen
+            let gameOverScene = GameOverScene(size: size)
+            
+            //configure a transition bjetc to specify the type of animation that handles the move between scenes
+            let reveal = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
+            
+            //access the current view and present the new scene
+            view?.presentScene(gameOverScene, transition: reveal)
+            
+            
+        }
         
     }
     
@@ -238,20 +239,7 @@ class GameScene: SKScene {
         
         altitude += 1
     }
-    //check for game over
-   // if score = 0 {
-    
-    //create a game over scene the same size as the full screen
-    //let gameOverScene = GameOverScene(size: size)
-    
-    //configure a transition bjetc to specify the type of animation that handles the move between scenes
-    //let reveal = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
-    
-    //access the current view and present the new scene
-    //view?.presentScene(gameOverScene, transition: reveal)
-    
-    
-    //}
+
     
     
     

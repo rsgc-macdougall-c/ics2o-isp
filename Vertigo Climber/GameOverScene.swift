@@ -21,8 +21,18 @@ class GameOverScene : SKScene {
         gameOverLabel.fontColor = SKColor.white
         gameOverLabel.zPosition = 150 //keeps label in foreground
         gameOverLabel.position = CGPoint(x: size.width/2, y: size.height/2) //very centre
-        
+        addChild(gameOverLabel)
+      
+        let playAgainLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
+        playAgainLabel.text = "Play Again?"
+        playAgainLabel.fontSize = 270
+        playAgainLabel.fontColor = SKColor.white
+        playAgainLabel.zPosition = 150 //keeps label in foreground
+        playAgainLabel.position = CGPoint(x: size.width/2, y: size.height/4) //slightly below centre
+        addChild(playAgainLabel)
         
     }
     
-}
+    
+            
+    }
