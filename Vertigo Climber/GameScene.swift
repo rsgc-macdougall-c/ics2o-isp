@@ -87,7 +87,7 @@ class GameScene: SKScene {
         altitudeLabel.position = CGPoint(x: size.width - size.width/2, y: size.height - size.height/8)
         addChild(altitudeLabel)
         
-
+        
         
         
         
@@ -112,7 +112,7 @@ class GameScene: SKScene {
         handleTouch(touches, with: event)
         
     }
-    
+    //function that controls touch events
     func handleTouch(_ touches: Set<UITouch>, with event: UIEvent?) {
         //manage finger size on screen
         guard let touch = touches.first else {
@@ -132,7 +132,7 @@ class GameScene: SKScene {
         
         // decide which side of the screen the tap occured on
         if ninja.position.x == leftDestination.x {
-            // right side
+            // got to right side
             let actionMove = SKAction.move(to: rightDestination, duration: 0.33)
             
             //tell ninja to move
@@ -155,12 +155,12 @@ class GameScene: SKScene {
         let obstacle = SKSpriteNode(imageNamed: "shuriken")
         
         obstacle.setScale(0.25)
-        
+        //positioning of the obstacles
         let horizontalPosition = CGFloat(arc4random_uniform(UInt32(910)))
         
         let verticalPosition = size.height + obstacle.size.height
         
-        
+        //starting and ending positions
         let startingPosition = CGPoint(x: horizontalPosition + 300, y: verticalPosition)
         
         obstacle.position = startingPosition
@@ -170,7 +170,7 @@ class GameScene: SKScene {
         addChild(obstacle)
         
         let endingPosition = CGPoint(x: horizontalPosition + 300, y: 0 - obstacle.size.height)
-        
+        //how long it takes before reaching the end of screen and removal
         let actionMove = SKAction.move(to: endingPosition, duration: 4)
         
         let actionRemove = SKAction.removeFromParent()
@@ -186,7 +186,7 @@ class GameScene: SKScene {
         
         //empty arry that will contain all the collisions
         var hitObstacles : [SKSpriteNode] = []
-        
+        //target specifically hadouken objects
         enumerateChildNodes(withName: "hadouken", using: {
             node, _ in
             
@@ -224,7 +224,7 @@ class GameScene: SKScene {
             //create a game over scene the same size as the full screen
             let gameOverScene = GameOverScene(size: size)
             
-            //configure a transition bjetc to specify the type of animation that handles the move between scenes
+            //configure a transition constant to specify the type of animation that handles the move between scenes
             let reveal = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
             
             //access the current view and present the new scene
@@ -234,12 +234,12 @@ class GameScene: SKScene {
         }
         
     }
-    
+    //function that increases difficulty over time by affecting durations and wait times
     func altitudeLabelChange() {
         
         altitude += 1
     }
-
+    
     
     
     
