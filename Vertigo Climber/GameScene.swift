@@ -27,6 +27,10 @@ class GameScene: SKScene {
     let altitudeLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
     var altitude = 0
     
+    //variables for keeping track of time
+    var elapsedTime : Int = 0
+    var startTime : Int?
+    
     //this function runs immediately upon start-up
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black //adds the background sprite
@@ -97,6 +101,29 @@ class GameScene: SKScene {
     //function that runs everytime SpriteKit updates the game frame
     override func update(_ currentTime: TimeInterval) {
         
+        if let startTime = startTime {
+            
+            //if started, how much time has elapsed?
+            let time = Int(currentTime) - startTime
+            
+            if time != elapsedTime {
+                elapsedTime = time
+                print(elapsedTime)
+            }
+            
+        } else {
+            //If not started, set the start time
+            startTime = Int(currentTime) - elapsedTime
+        
+        
+        }
+
+        
+        
+        
+        
+        
+        
         //checks for Collisions
         checkCollisions()
     }
@@ -112,6 +139,7 @@ class GameScene: SKScene {
         handleTouch(touches, with: event)
         
     }
+    
     //function that controls touch events
     func handleTouch(_ touches: Set<UITouch>, with event: UIEvent?) {
         //manage finger size on screen
@@ -171,6 +199,7 @@ class GameScene: SKScene {
         
         let endingPosition = CGPoint(x: horizontalPosition + 300, y: 0 - obstacle.size.height)
         //how long it takes before reaching the end of screen and removal
+        
         let actionMove = SKAction.move(to: endingPosition, duration: 4)
         
         let actionRemove = SKAction.removeFromParent()
@@ -180,7 +209,7 @@ class GameScene: SKScene {
         obstacle.run(actionSequence)
         
     }
-    
+
     //checks for Collisions
     func checkCollisions() {
         
@@ -234,13 +263,11 @@ class GameScene: SKScene {
         }
         
     }
+    
     //function that increases difficulty over time by affecting durations and wait times
     func altitudeLabelChange() {
-        
-        altitude += 1
+      
+    
     }
-    
-    
-    
     
 }
