@@ -31,6 +31,8 @@ class GameScene: SKScene {
     var elapsedTime : Int = 0
     var startTime : Int?
     
+    var obstacleSpeed = 4.0
+    
     //this function runs immediately upon start-up
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black //adds the background sprite
@@ -109,15 +111,20 @@ class GameScene: SKScene {
             if time != elapsedTime {
                 elapsedTime = time
                 print(elapsedTime)
+                
+                altitude += 1
+                
+                altitudeLabel.text = String(altitude)
+                
+                altitudeLabelChange()
             }
             
         } else {
             //If not started, set the start time
             startTime = Int(currentTime) - elapsedTime
-        
-        
+            
         }
-
+        
         
         
         
@@ -200,7 +207,7 @@ class GameScene: SKScene {
         let endingPosition = CGPoint(x: horizontalPosition + 300, y: 0 - obstacle.size.height)
         //how long it takes before reaching the end of screen and removal
         
-        let actionMove = SKAction.move(to: endingPosition, duration: 4)
+        let actionMove = SKAction.move(to: endingPosition, duration: obstacleSpeed)
         
         let actionRemove = SKAction.removeFromParent()
         
@@ -209,7 +216,7 @@ class GameScene: SKScene {
         obstacle.run(actionSequence)
         
     }
-
+    
     //checks for Collisions
     func checkCollisions() {
         
@@ -265,9 +272,19 @@ class GameScene: SKScene {
     }
     
     //function that increases difficulty over time by affecting durations and wait times
+    var altitudeChange = 5
     func altitudeLabelChange() {
-      
-    
+        
+        if altitude >= altitudeChange {
+            obstacleSpeed -= 0.5
+            altitudeChange += 5
+        } else if obstacleSpeed <= 1 {
+            obstacleSpeed -= 0.1
+            altitudeChange += 5
+        } else if obstacleSpeed <= 0.4 {
+            
+        }
+        
     }
     
 }
