@@ -32,6 +32,7 @@ class GameScene: SKScene {
     var startTime : Int?
     
     var obstacleSpeed = 4.0
+    var altitudeChange = 5
     
     //this function runs immediately upon start-up
     override func didMove(to view: SKView) {
@@ -272,19 +273,13 @@ class GameScene: SKScene {
     }
     
     //function that increases difficulty over time by affecting durations and wait times
-    var altitudeChange = 5
+    
     func altitudeLabelChange() {
         
-        if altitude >= altitudeChange {
+        if altitude % 30 == 0 && obstacleSpeed >= 1 {
             obstacleSpeed -= 0.5
             altitudeChange += 5
-        } else if obstacleSpeed <= 1 {
-            obstacleSpeed -= 0.1
-            altitudeChange += 5
-        } else if obstacleSpeed <= 0.4 {
-            
         }
-        
     }
     
 }
